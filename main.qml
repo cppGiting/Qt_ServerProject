@@ -4,12 +4,12 @@ import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.12
 
 Window {
+    id: windowRoot
+
     width: 640
     height: 480
     visible: true
     title: qsTr("Server")
-
-    opacity: visibleButton.vis ? 1 : 0.5
 
     property int defMargin: 10
 
@@ -49,7 +49,7 @@ Window {
             anchors.left: parent.left
             anchors.margins: defMargin
 
-            x: root.posXButton
+
 
             width: parent.width / 4
             height: parent.height / 15
@@ -62,17 +62,16 @@ Window {
         }
 
         Button {
+
             id: visibleButton
             property bool vis: true
 
-            text: vis ? "visible 100%" : "visible: 50%"
+            text: vis ? "opacity (off)" : "opacity (on)"
 
             anchors.bottom: exitButton.bottom
             anchors.left: parent.left
             anchors.margins: defMargin
             anchors.bottomMargin: parent.height / 15
-
-            x: root.posXButton
 
             width: parent.width / 4
             height: parent.height / 15
@@ -81,7 +80,29 @@ Window {
 
             onClicked: {
                 vis = !vis;
+                objData.setVisibleWindow(opacityWindow.text);
+                opacityWindow.enabled = vis;
+                if(!vis){
+                    windowRoot.opacity = objData.getVisibleWindow() / 100;
+                } else {
+                    windowRoot.opacity = 1;
+                }
             }
+
+            TextInput {
+                id: opacityWindow
+                maximumLength: 3
+                validator: IntValidator {bottom: 1; top: 100}
+                text: objData.getVisibleWindow()
+                anchors.right: parent.right
+
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: windowRoot.height / 25
+                height: parent.height * 0.4
+                width: parent.width * 0.2
+                font.pointSize: visibleButton.font.pointSize - 1
+            }
+
         }
 
     }
