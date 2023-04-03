@@ -13,20 +13,19 @@ Item {
     Rectangle {
         id: checkBox
 
-        property bool isClicked: false
-
-        color: isClicked ? "black" : "white"
+        color: "white"
 
         width: parent.width / 4
         height: parent.height / 5
 
-        opacity: isClicked ? 0.4 : 0.9
+        opacity: objData.getCheckBoxPress() ? 0.4 : 0.9
 
         MouseArea {
             anchors.fill: parent
             onClicked: {
                 root.clicked();
-                checkBox.isClicked = !checkBox.isClicked;
+                objData.setCheckBoxPress(!objData.getCheckBoxPress());
+                checkBox.color = objData.getCheckBoxPress() ? "black" : "white";
             }
         }
     }

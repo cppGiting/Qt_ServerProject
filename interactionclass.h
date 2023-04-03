@@ -2,6 +2,9 @@
 #define INTERACTIONCLASS_H
 
 #include <QObject>
+#include <QDebug>
+
+#include "server.h"
 
 class InteractionClass : public QObject
 {
@@ -11,10 +14,12 @@ public:
 public slots:
     int getVisibleWindow();
     void setVisibleWindow(int);
-
+    void setCheckBoxPress(bool);
+    bool getCheckBoxPress();
 private:
     int m_visibleWindow;
-
+    bool m_checkBoxPress;
+    Server* server;
 };
 
 #endif // INTERACTIONCLASS_H

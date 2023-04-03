@@ -95,11 +95,10 @@ Window {
                 validator: IntValidator {bottom: 1; top: 100}
                 text: objData.getVisibleWindow()
                 anchors.right: parent.right
-
                 anchors.bottom: parent.bottom
                 anchors.bottomMargin: windowRoot.height / 25
-                height: parent.height * 0.4
-                width: parent.width * 0.2
+                height: parent.height * 0.5
+                width: parent.width * 0.3
                 font.pointSize: visibleButton.font.pointSize - 1
             }
 

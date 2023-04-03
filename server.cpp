@@ -4,6 +4,11 @@
 
 Server::Server(QObject *parent) : QObject(parent)
 {
+
+}
+
+void Server::slotStart()
+{
     mTcpServer = new QTcpServer(this);
 
     connect(mTcpServer, &QTcpServer::newConnection, this, &Server::slotNewConnection);
@@ -23,6 +28,11 @@ void Server::slotNewConnection()
 
     connect(mTcpSocket, &QTcpSocket::readyRead, this, &Server::slotServerRead);
     connect(mTcpSocket, &QTcpSocket::disconnected, this, &Server::slotClientDisconnected);
+}
+
+void Server::slotClose()
+{
+    mTcpSocket->disconnectFromHost();
 }
 
 void Server::slotServerRead()

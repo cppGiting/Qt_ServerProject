@@ -13,9 +13,11 @@ public:
     explicit Server(QObject *parent = 0);
 
 public slots:
+    void slotStart();
     void slotNewConnection();
     void slotServerRead();
     void slotClientDisconnected();
+    void slotClose();
 
 private:
     QTcpServer* mTcpServer;

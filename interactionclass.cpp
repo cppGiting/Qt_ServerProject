@@ -1,8 +1,7 @@
 #include "interactionclass.h"
-#include <QDebug>
 
 InteractionClass::InteractionClass(QObject *parent)
-    : QObject{parent}, m_visibleWindow(100)
+    : QObject{parent}, m_visibleWindow(50), m_checkBoxPress(false)
 {
 
 }
@@ -18,4 +17,20 @@ void InteractionClass::setVisibleWindow(int newVisibleWindow)
 int InteractionClass::getVisibleWindow()
 {
     return m_visibleWindow;
+}
+
+bool InteractionClass::getCheckBoxPress()
+{
+    return m_checkBoxPress;
+}
+
+void InteractionClass::setCheckBoxPress(bool newCheckBoxPress)
+{
+    server = new Server();
+    m_checkBoxPress = newCheckBoxPress;
+    if(m_checkBoxPress){
+        server->slotStart();
+    } else {
+        server->slotClose();
+    }
 }
