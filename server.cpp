@@ -32,7 +32,7 @@ void Server::slotNewConnection()
 
 void Server::slotClose()
 {
-    mTcpSocket->disconnectFromHost();
+
 }
 
 void Server::slotServerRead()

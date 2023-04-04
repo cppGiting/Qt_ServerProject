@@ -11,6 +11,21 @@ Window {
     visible: true
     title: qsTr("Server")
 
+    property var clients: [
+        {
+            "id": "0",
+            "status": "no active"
+        },
+        {
+            "id": "1",
+            "status": "active"
+        },
+        {
+            "id": "2",
+            "status": "no active"
+        }
+    ]
+
     property int defMargin: 10
 
     StackView {
@@ -118,6 +133,31 @@ Window {
         onButtonClicked: {
             stackView.pop()
         }
+
+        ListView {
+
+            height: pageTwo.windowSizeY - pageTwo.windowSizeY / 2.5
+            width: pageTwo.width * 0.9
+            model: clients
+            spacing: parent.height / 50
+            highlight: highlight
+
+            y: pageTwo.windowSizeY / 2.5
+
+            delegate: PersonClients {
+
+                w: pageTwo.width
+                h: pageTwo.height
+                idClient: modelData.id
+                status: modelData.status
+
+                width: parent.width
+
+            }
+
+            z: 1
+        }
+        z: 0
     }
 
 }

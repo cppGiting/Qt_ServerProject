@@ -10,6 +10,8 @@ Page {
     property alias buttonText: navButton.text
     property alias textTitle: textLabel.text
     property int widthButton: navButton.width
+    property int windowSizeY: parent.height - parent.height / 5
+    property int windowSizeX: parent.width
     property int posXButton: 0
 
     signal buttonClicked();
@@ -18,6 +20,7 @@ Page {
         id: backgroundRect
         height: parent.height - backgroundTitlePage.height
         y: parent.height - backgroundTitlePage.height * 4 + 0.1
+        z: 0
     }
 
     Button {
@@ -35,6 +38,7 @@ Page {
         onClicked: {
             root.buttonClicked();
         }
+        z: 0
     }
 
     Rectangle {
@@ -51,8 +55,11 @@ Page {
             font.pointSize: ((parent.width + parent.height) / 20) + 1
             anchors.centerIn: parent
             color: Qt.lighter(backgroundRect.color)
-
+            z: 0
         }
+        z: 0
     }
+
+    z: 0
 
 }
